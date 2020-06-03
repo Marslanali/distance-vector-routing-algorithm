@@ -1,0 +1,14 @@
+5
+V
+W
+X
+Y
+Z
+7
+V W 2
+V X 2
+X W 1
+X Z 3
+W Y 7
+W Z 5
+Y Z 4
