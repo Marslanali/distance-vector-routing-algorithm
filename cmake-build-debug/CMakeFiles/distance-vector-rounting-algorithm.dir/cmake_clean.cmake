@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/distance-vector-rounting-algorithm.dir/src/DistanceVector.cpp.o"
-  "distance-vector-rounting-algorithm"
   "distance-vector-rounting-algorithm.pdb"
+  "distance-vector-rounting-algorithm"
 )
 
 # Per-language clean rules from dependency scanning.

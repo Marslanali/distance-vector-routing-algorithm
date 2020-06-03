@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/distance-vector-rounting-algorithm-reverse.dir/src/PoisonedReverse.cpp.o"
-  "distance-vector-rounting-algorithm-reverse"
   "distance-vector-rounting-algorithm-reverse.pdb"
+  "distance-vector-rounting-algorithm-reverse"
 )
 
 # Per-language clean rules from dependency scanning.
