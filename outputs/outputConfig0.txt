@@ -1,0 +1,58 @@
+
+#START  
+
+t=0 distance from V to W via W is 2
+t=0 distance from W to V via V is 2
+t=0 distance from V to X via X is 2
+t=0 distance from X to V via V is 2
+t=0 distance from X to W via W is 1
+t=0 distance from W to X via X is 1
+t=0 distance from X to Z via Z is 3
+t=0 distance from Z to X via X is 3
+t=0 distance from W to Y via Y is 7
+t=0 distance from Y to W via W is 7
+t=0 distance from W to Z via Z is 5
+t=0 distance from Z to W via W is 5
+t=0 distance from Y to Z via Z is 4
+t=0 distance from Z to Y via Y is 4
+
+
+#INITIAL  
+
+Router V: W is 2 through W 
+Router V: X is 2 through X 
+Router W: V is 2 through V 
+Router W: X is 1 through X 
+Router W: Y is 7 through Y 
+Router W: Z is 5 through Z 
+Router X: V is 2 through V 
+Router X: W is 1 through W 
+Router X: Z is 3 through Z 
+Router Y: W is 7 through W 
+Router Y: Z is 4 through Z 
+Router Z: W is 5 through W 
+Router Z: X is 3 through X 
+Router Z: Y is 4 through Y 
+
+#UPDATE 4
+
+t=0 distance from W to X via X is 4
+t=0 distance from X to W via W is 4
+
+#FINAL  
+
+Router V: W is 2 through W 
+Router V: X is 2 through X 
+Router W: V is 2 through V 
+Router W: X is 4 through X 
+Router W: Y is 7 through Y 
+Router W: Z is 5 through Z 
+Router X: V is 2 through V 
+Router X: W is 4 through W 
+Router X: Z is 3 through Z 
+Router Y: W is 7 through W 
+Router Y: Z is 4 through Z 
+Router Z: W is 5 through W 
+Router Z: X is 3 through X 
+Router Z: Y is 4 through Y 
+
