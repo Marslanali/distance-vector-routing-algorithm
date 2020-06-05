@@ -1,0 +1,34 @@
+
+#START  
+
+t=0 distance from X to Y via Y is 1
+t=0 distance from Y to X via X is 1
+t=0 distance from Y to Z via Z is 2
+t=0 distance from Z to Y via Y is 2
+t=0 distance from X to Z via Z is 5
+t=0 distance from Z to X via X is 5
+
+
+#INITIAL  
+
+Router X: Y is 1 through Y 
+Router X: Z is 5 through Z 
+Router Y: X is 1 through X 
+Router Y: Z is 2 through Z 
+Router Z: X is 5 through X 
+Router Z: Y is 2 through Y 
+
+#UPDATE 5
+
+t=0 distance from X to Y via Y is 1
+t=0 distance from Y to X via X is 1
+
+#FINAL  
+
+Router X: Y is 1 through Y 
+Router X: Z is 3 through Y 
+Router Y: X is 1 through X 
+Router Y: Z is 2 through Z 
+Router Z: X is 3 through Y 
+Router Z: Y is 2 through Y 
+

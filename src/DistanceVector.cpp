@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <iostream>
-
-// Dislay function, used to display output in desired form
+using namespace std;
+/* Dislay function, used to display output in desired form*/
 void display1(int time, char s, char d, char via, int cost);
 void display2(char s, char d, char via, int cost);
 
-// Structure to store routing table
+/*Structure to store routing table*/
 struct node {
   unsigned dist[20];
   unsigned from[20];
@@ -18,7 +17,7 @@ int main(int argc, char **argv) {
   FILE *changConfig_file; /* configuration change file */
   config_file = fopen(argv[1], "r");
 
-  // error handling
+  /*error handling*/
   if (config_file == NULL) {
     fprintf(stderr, "Error:Unable to open %s\n", argv[1]);
     return 0;
@@ -29,7 +28,7 @@ int main(int argc, char **argv) {
     return 0;
   }
 
-  int i, j, k, count, cost, time = 0;
+  int k, cost, time = 0;
 
   /* Read in data */
   char str1 = fgetc(config_file);
@@ -39,7 +38,7 @@ int main(int argc, char **argv) {
   int dmat[5][5];
   char Router[num_nodes];
 
-  // setting initial value in dmat to unlimited distance
+  /*setting initial value in dmat to unlimited distance*/
   for (int i = 0; i < num_nodes; i++) {
     for (int j = 0; j < num_nodes; j++) {
       dmat[i][j] = inf;
@@ -47,7 +46,7 @@ int main(int argc, char **argv) {
   }
 
   printf("\n#START  \n");
-  /// Extracting Router ID
+  /*Extracting Router ID*/
   for (int r = 0; r < num_nodes; ++r) {
     if (feof(config_file) != 1) {
       fgetc(config_file);
@@ -57,7 +56,7 @@ int main(int argc, char **argv) {
   }
 
   int num_links = 0;
-  // Extracting Link Info
+  /*Extracting Link Info*/
   if (feof(config_file) != 1) {
     fgetc(config_file);
     char a = fgetc(config_file);
@@ -66,15 +65,15 @@ int main(int argc, char **argv) {
 
   for (int l = 0; l < num_links; ++l) {
     fgetc(config_file);
-    char s = fgetc(config_file);  // Source
+    char s = fgetc(config_file); /*Source*/
     fgetc(config_file);
-    char d = fgetc(config_file);  // Distination
+    char d = fgetc(config_file); /*Distination*/
     fgetc(config_file);
-    char c = fgetc(config_file);  // cost of the link
+    char c = fgetc(config_file); /*cost of the link*/
     cost = atoi(&c);
     /*printf("\nsource: %c destination: %c cost: %i \n",s,d,cost);*/
     for (int i = 0; i < num_nodes; i++) {
-      // save link cost in rt data structure
+      /*save link cost in rt data structure*/
       if (s == Router[i]) {
         for (int j = 0; j < num_nodes; j++) {
           if (d == Router[j]) {
@@ -84,7 +83,7 @@ int main(int argc, char **argv) {
             rt[j].dist[i] = cost;
             rt[j].from[i] = i;
 
-            // displaying 2 way link info
+            /*displaying 2 way link info*/
             display1(time, s, d, Router[rt[i].from[j]], cost);
             display1(time, d, s, Router[rt[j].from[i]], cost);
           }
@@ -93,7 +92,24 @@ int main(int argc, char **argv) {
     }
   }
 
-  std::cout << "\n";
+  printf("\n");
+
+
+  printf("Initial Router Table\n");
+  for (int l = 0; l < num_links; ++l) {
+   /* printf("\nsource: %c destination: %c cost: %i \n",s,d,cost);*/
+    for (int i = 0; i < num_nodes; i++) {
+      for (int j = 0; j < num_nodes; j++) {
+        /*displaying 2 way link info*/
+        printf(" %i ", rt[i].dist[j]);
+      }
+      printf("\n");
+    }
+    printf("\n");
+  }
+
+
+  printf("\n");
 
   printf("\n\n#INITIAL  \n");
   for (int i = 0; i < num_nodes; i++) {
@@ -103,33 +119,57 @@ int main(int argc, char **argv) {
       }
     }
   }
-
-  // Updating the table
+  for (int l = 0; l < num_links; ++l) {
+    /* printf("\nsource: %c destination: %c cost: %i \n",s,d,cost);*/
+    for (int i = 0; i < num_nodes; i++) {
+      for (int j = 0; j < num_nodes; j++) {
+        /*displaying 2 way link info*/
+        printf(" %i ", rt[i].dist[j]);
+      }
+      printf("\n");
+    }
+    printf("\n");
+  }
+  int flag;
+  /*Updating the table*/
   do {
-    count = 0;
+    flag = 0;
     for (int i = 0; i < num_nodes; i++) {
       for (int j = 0; j < num_nodes; j++) {
         for (k = 0; k < num_nodes; k++) {
-          // Finding minimum cost
-          if (rt[i].dist[j] > dmat[i][k] + rt[k].dist[j]) {
+          /* Finding minimum cost*/
+          if ((rt[i].dist[j]) > (rt[i].dist[k] + rt[k].dist[j])) {
             rt[i].dist[j] = rt[i].dist[k] + rt[k].dist[j];
-            rt[j].dist[i] = rt[i].dist[j];
             rt[i].from[j] = k;
-            rt[j].from[i] = k;
-            count++;
-
+            flag = 1;
           }
         }
       }
     }
-  } while (count != 0);
+  } while (flag);
 
-  // Checking for link change info
+
+  printf("\n update: 2 \n");
+  for (int l = 0; l < num_links; ++l) {
+    /* printf("\nsource: %c destination: %c cost: %i \n",s,d,cost);*/
+    for (int i = 0; i < num_nodes; i++) {
+      for (int j = 0; j < num_nodes; j++) {
+        /*displaying 2 way link info*/
+        printf(" %i ", rt[i].dist[j]);
+      }
+      printf("\n");
+    }
+    printf("\n");
+  }
+
+
+
+  /*Checking for link change info*/
   printf("\n\n#UPDATE %d\n", cost);
   char c = fgetc(changConfig_file);
   int c_link = atoi(&c);
 
-  for (int j = 0; j < c_link; j++) {  // Extracting link change infor from change config file
+  for (int j = 0; j < c_link; j++) { /*Extracting link change infor from change config file*/
     fgetc(changConfig_file);
     char s = fgetc(changConfig_file);
     fgetc(changConfig_file);
@@ -148,7 +188,7 @@ int main(int argc, char **argv) {
             rt[j].dist[i] = cost;
             rt[j].from[i] = i;
 
-            // Display change in link
+            /* Display change in link*/
             display1(time, s, d, Router[rt[i].from[j]], cost);
             display1(time, d, s, Router[rt[j].from[i]], cost);
           }
@@ -156,25 +196,23 @@ int main(int argc, char **argv) {
       }
     }
   }
+
+  int flag2;
   do {
-    count = 0;
+    flag2 = 0;
     for (int i = 0; i < num_nodes; i++) {
       for (int j = 0; j < num_nodes; j++) {
         for (k = 0; k < num_nodes; k++) {
-          if (rt[i].dist[j] > dmat[i][k] + rt[k].dist[j]) {
-
+          if ((rt[i].dist[j]) > (rt[i].dist[k] + rt[k].dist[j])) {
             rt[i].dist[j] = rt[i].dist[k] + rt[k].dist[j];
-            rt[j].dist[i] = rt[i].dist[j];
             rt[i].from[j] = k;
-            rt[j].from[i] = k;
-
-            count++;
+            flag2 = 1;
           }
         }
       }
     }
-  } while (count != 0);
-  // Displaying final route
+  } while (flag2);
+  /*Displaying final route*/
   printf("\n\n#FINAL  \n");
   for (int i = 0; i < num_nodes; i++) {
     for (int j = 0; j < num_nodes; j++) {
@@ -184,13 +222,28 @@ int main(int argc, char **argv) {
     }
   }
 
+  printf("\n");
+  printf("Final Router Table\n");
+  for (int l = 0; l < num_links; ++l) {
+    /*printf("\nsource: %c destination: %c cost: %i \n",s,d,cost);*/
+    for (int i = 0; i < num_nodes; i++) {
+      for (int j = 0; j < num_nodes; j++) {
+        /*displaying 2 way link info*/
+        printf(" %i ", rt[i].dist[j]);
+      }
+      printf("\n");
+    }
+    printf("\n");
+  }
+
   printf("\n\n");
   fclose(config_file);
   fclose(changConfig_file);
   return (0);
 }
-// Display1 and display2 functions are used to display link information at different time stamp.
-// At the input, they take source id s, destination id d, intermidiate router id 'via', and link cost.
+/* Display1 and display2 functions are used to display link information at
+ different time stamp. At the input, they take source id s, destination id d,
+ intermidiate router id 'via', and link cost*/
 
 void display1(int time, char s, char d, char via, int cost) {
   printf("\nt=%d distance from %c to %c via %c is %d", time, s, d, via, cost);

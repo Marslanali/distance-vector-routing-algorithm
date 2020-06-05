@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/arslan/CLionProjects/distance-vector-routing-algorithm/src/SimpleDistanceVector.cpp
+iostream
+-
+stdio.h
+-
+
