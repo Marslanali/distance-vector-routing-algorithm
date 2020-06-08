@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/simple-distance-vector-rounting-algorithm.dir/src/SimpleDistanceVector.cpp.o  -o simple-distance-vector-rounting-algorithm 
