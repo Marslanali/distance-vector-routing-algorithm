@@ -5,6 +5,6 @@ project(distance_vector_rounting_algorithm)
 set(CMAKE_CXX_STANDARD 11)
 # added -fopenmp
 
-add_executable(distance-vector-rounting-algorithm  ${PROJECT_SOURCE_DIR}/src/DistanceVector.cpp)
-add_executable(distance-vector-rounting-algorithm-reverse ${PROJECT_SOURCE_DIR}/src/PoisonedReverse.cpp)
-add_executable(simple-distance-vector-rounting-algorithm  ${PROJECT_SOURCE_DIR}/src/SimpleDistanceVector.cpp)
+add_executable(distance-vector-rounting-algorithm  ${PROJECT_SOURCE_DIR}/src/DistanceVector.c)
+add_executable(distance-vector-rounting-algorithm-reverse ${PROJECT_SOURCE_DIR}/src/PoisonedReverse.c)
+add_executable(simple-distance-vector-rounting-algorithm  ${PROJECT_SOURCE_DIR}/src/SimpleDistanceVector.c)
