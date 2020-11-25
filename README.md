@@ -91,7 +91,7 @@ $ ./distance-vector-rounting-algorithm
 
 ## To-Do List
 
-- :ballot_box_with_check: Update README.md
+- :negative_squared_cross_mark: Update README.md
 - :negative_squared_cross_mark: Add CMake Cross Platform Support
 
 
